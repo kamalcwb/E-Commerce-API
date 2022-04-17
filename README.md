@@ -13,8 +13,7 @@
 + Node.JS
 + express
 + MongoDB
-+ CRUD
-+ JWT
++ Operaões CRUD (com JWT)
 
 :triangular_flag_on_post: :triangular_flag_on_post: CONSTRUINDO A API DO PROJETO:
 
