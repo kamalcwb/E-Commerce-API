@@ -32,13 +32,12 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
 router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
     try {
         await User.findByIdAndDelete(req.params.id);
-        res.status(200).json("User has been deleted...");
+        res.status(200).json("Usuário foi deletado...");
     } catch (err) {
         res.status(500).json(err);
     }
 });
 
-//GET USER
 router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
