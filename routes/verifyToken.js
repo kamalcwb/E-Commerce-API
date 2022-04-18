@@ -13,7 +13,7 @@ const verifyToken = (req, res, next) => {
     } else {
         return res.status(401).json("Falha de autenticação")
     }
-}
+};
 
 const verifyTokenAndAuthorization = (req, res, next) => {
     verifyToken(req, res, () => {

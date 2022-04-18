@@ -10,8 +10,15 @@ const router = require("express").Router();
 
 //Criar novo produto
 router.post("/", verifyTokenAndAdmin, async (req, res) => {
-    const newProduct = new Product(req.body)
-})
+    const newProduct = new Product(req.body);
+
+    try {
+        const savedProduct = await newProduct.save();
+        res.status(200).json(savedProduct);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 //Alterar produto
 router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
