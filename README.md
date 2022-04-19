@@ -14,6 +14,7 @@
 + express
 + MongoDB
 + Operaões CRUD (com JWT)
++ API Stripe (stripe e stripe checkout)
 
 :triangular_flag_on_post: :triangular_flag_on_post: CONSTRUINDO A API DO PROJETO:
 
@@ -21,8 +22,9 @@
 ## Como Executar o projeto:
 
 1) Crie um arquivo .ENV
-2) Crie e configure a chave MONGO_URL (URL com os seus dados do MongoBR)
-3) Crie e configure a chave  PASS_SEC (Sua senha)
-4) Crie e configure a chave JWT_SEC (Senha para o JWT)
-5) Execute yarn start
+2) Crie e configure a chave MONGO_URL (URL com os seus dados do MongoBR) no arquivo .env
+3) Crie e configure a chave  PASS_SEC (Sua senha) no arquivo .env
+4) Crie e configure a chave JWT_SEC (Senha para o JWT) no arquivo .env
+5) Crie uma conta no site (stripe.com) e confire a chave STRIPE_KEY no arquivo .env
+6) Execute yarn start
 
