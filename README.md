@@ -4,8 +4,7 @@
 >Status: :construction: :construction: :construction:EM DESENVOLVIMENTO :construction: :construction: :construction:
 
 
-### Api de um site e-commerce:
-:triangular_flag_on_post: https://github.com/kamalcwb/E-Commerce
+### Api de um site e-commerce.
 
 
 ## Tecnologias utilizadas:
@@ -16,7 +15,7 @@
 + Operaões CRUD (com JWT)
 + API Stripe (stripe e stripe checkout)
 
-:triangular_flag_on_post: :triangular_flag_on_post: CONSTRUINDO A API DO PROJETO:
+:triangular_flag_on_post: :triangular_flag_on_post: CONSTRUINDO A API DO PROJETO: https://github.com/kamalcwb/E-Commerce
 
 
 ## Como Executar o projeto:
