@@ -14,10 +14,10 @@ mongoose.connect(process.env.MONGO_URL).then(() => console.log("Conectado ao Dat
 
 app.use(express.json());
 app.use("/api/auth", authRoute);
-app.use("/api/user", userRoute);
-app.use("/api/product", productRoute);
-app.use("/api/cart", cartRoute);
-app.use("/api/order", orderRoute);
+app.use("/api/usuario", userRoute);
+app.use("/api/produto", productRoute);
+app.use("/api/carrinho", cartRoute);
+app.use("/api/pedido", orderRoute);
 
 app.listen(process.env.PORT || 5000, () => {
     console.log("server online")
