@@ -1,5 +1,4 @@
 const Order = require("../models/Order");
-const User = require("../models/Product");
 const {
     verifyToken,
     verifyTokenAndAuthorization,
@@ -8,20 +7,21 @@ const {
 
 const router = require("express").Router();
 
-//Criar pedido
+//CRIAR
+
 router.post("/", verifyToken, async (req, res) => {
-    const newOrder = new Order(req.body)
+    const newOrder = new Order(req.body);
+
     try {
-        const savedOrder = await new Cart.save()
-        res.status(200).json(savedOrder)
+        const savedOrder = await newOrder.save();
+        res.status(200).json(savedOrder);
     } catch (err) {
-        res.status(500).json(err)
+        res.status(500).json(err);
     }
 });
 
-//Alterar pedido
+//ATT
 router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
-
     try {
         const updatedOrder = await Order.findByIdAndUpdate(
             req.params.id,
@@ -36,17 +36,17 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
     }
 });
 
-// Deletar pedido
+//DELETAR
 router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
     try {
         await Order.findByIdAndDelete(req.params.id);
-        res.status(200).json("O pedido foi excluida...");
+        res.status(200).json("Order has been deleted...");
     } catch (err) {
         res.status(500).json(err);
     }
 });
 
-// Pesquisar pedidos
+//PEDIDOS DE USUÁRIOS
 router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
     try {
         const orders = await Order.find({ userId: req.params.userId });
@@ -56,25 +56,35 @@ router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
     }
 });
 
-// Mostrar todos os pedidos
+// //TODOS
+
 router.get("/", verifyTokenAndAdmin, async (req, res) => {
     try {
-        const orders = await Order.find()
-        res.status(200).json(orders)
+        const orders = await Order.find();
+        res.status(200).json(orders);
     } catch (err) {
-        res.status(500).json(err)
+        res.status(500).json(err);
     }
 });
 
-// Mostrar mensalmente
+// RENDA MENSAL
+
 router.get("/income", verifyTokenAndAdmin, async (req, res) => {
+    const productId = req.query.pid;
     const date = new Date();
     const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
     const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() - 1));
 
     try {
         const income = await Order.aggregate([
-            { $match: { createdAt: { $gte: previousMonth } } },
+            {
+                $match: {
+                    createdAt: { $gte: previousMonth },
+                    ...(productId && {
+                        products: { $elemMatch: { productId } },
+                    }),
+                },
+            },
             {
                 $project: {
                     month: { $month: "$createdAt" },
@@ -93,6 +103,5 @@ router.get("/income", verifyTokenAndAdmin, async (req, res) => {
         res.status(500).json(err);
     }
 });
-
 
 module.exports = router;
